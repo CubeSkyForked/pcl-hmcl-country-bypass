@@ -33,4 +33,4 @@ foreach ($architecture in @('x64', 'Win32')) {
 
 & $python (Join-Path $PSScriptRoot 'package-release.py')
 if ($LASTEXITCODE -ne 0) { throw "Release packaging failed: $LASTEXITCODE" }
-Write-Host 'Release files: dist\winmm.dll (x64), dist\version.dll (x86).'
+Write-Host 'Release files: dist\winmm.dll (x64), dist\version.dll (x86), dist\HKRegion.HMCL.Agent.jar (Java 17+).'

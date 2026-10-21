@@ -1,4 +1,4 @@
-name: Build and release launcher DLLs
+name: Build and release launcher patches
 
 on:
   push:
@@ -37,12 +37,13 @@ jobs:
       - name: Upload the tested release bundle
         uses: actions/upload-artifact@v7
         with:
-          name: launcher-dlls
+          name: launcher-release
           if-no-files-found: error
           retention-days: 14
           path: |
             dist/winmm.dll
             dist/version.dll
+            dist/HKRegion.HMCL.Agent.jar
             build/release-manifest.json
             build/release-notes.md
 
@@ -56,25 +57,42 @@ jobs:
     steps:
       - uses: actions/download-artifact@v8
         with:
-          name: launcher-dlls
+          name: launcher-release
           path: .
       - name: Verify the downloaded bundle
         run: |
           python3 - <<'PY'
-          import hashlib, json, struct
+          import hashlib, io, json, struct, zipfile
           from pathlib import Path
           manifest = json.loads(Path('build/release-manifest.json').read_text())
-          expected = {'winmm.dll': 0x8664, 'version.dll': 0x14c}
-          assert {entry['name'] for entry in manifest['assets']} == set(expected)
-          assert {p.name for p in Path('dist').iterdir()} == set(expected)
+          dlls = {'winmm.dll': 0x8664, 'version.dll': 0x14c}
+          expected = set(dlls) | {'HKRegion.HMCL.Agent.jar'}
+          assert len(manifest['assets']) == len(expected)
+          assert {entry['name'] for entry in manifest['assets']} == expected
+          assert {p.name for p in Path('dist').iterdir()} == expected
           for entry in manifest['assets']:
               data = (Path('dist') / entry['name']).read_bytes()
+              assert len(data) == entry['bytes']
               assert hashlib.sha256(data).hexdigest() == entry['sha256']
-              pe = struct.unpack_from('<I', data, 0x3c)[0]
-              assert data[pe:pe + 4] == b'PE\0\0'
-              assert struct.unpack_from('<H', data, pe + 4)[0] == expected[entry['name']]
+              if entry['name'] in dlls:
+                  pe = struct.unpack_from('<I', data, 0x3c)[0]
+                  assert data[pe:pe + 4] == b'PE\0\0'
+                  assert struct.unpack_from('<H', data, pe + 4)[0] == dlls[entry['name']]
+                  assert struct.unpack_from('<H', data, pe + 22)[0] & 0x2000
+              else:
+                  with zipfile.ZipFile(io.BytesIO(data)) as archive:
+                      assert archive.testzip() is None
+                      attributes = dict(line.split(': ', 1) for line in archive.read('META-INF/MANIFEST.MF').decode().splitlines() if ': ' in line)
+                      assert attributes.get('Premain-Class') == 'hkregion.hmcl.HmclRegionAgent'
+                      assert attributes.get('Agent-Class') == 'hkregion.hmcl.HmclRegionAgent'
+                      assert attributes.get('Can-Retransform-Classes') == 'true'
+                      for name in ('hkregion/hmcl/HmclRegionAgent.class', 'hkregion/hmcl/HmclClassAnalyzer.class'):
+                          bytecode = archive.read(name)
+                          assert bytecode[:4] == b'\xca\xfe\xba\xbe'
+                          assert struct.unpack_from('>H', bytecode, 6)[0] <= 61
+                      assert b'MIT License' in archive.read('META-INF/LICENSE')
           PY
-      - name: Create the release and upload exactly two DLLs
+      - name: Create the release and upload two DLLs and the standalone agent
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GH_REPO: ${{ github.repository }}
@@ -90,5 +108,5 @@ jobs:
             gh release create --draft --verify-tag \
               --title "$RELEASE_TAG" --notes-file build/release-notes.md -- "$RELEASE_TAG"
           fi
-          gh release upload --clobber -- "$RELEASE_TAG" dist/winmm.dll dist/version.dll
+          gh release upload --clobber -- "$RELEASE_TAG" dist/winmm.dll dist/version.dll dist/HKRegion.HMCL.Agent.jar
           gh release edit --draft=false --notes-file build/release-notes.md -- "$RELEASE_TAG"

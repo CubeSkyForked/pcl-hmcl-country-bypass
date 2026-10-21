@@ -20,6 +20,18 @@ x86 原生壳先按映射 PE 的导出模块名或 HMCL 文件名前缀识别候
 
 正常运行仍只需 x64 `winmm.dll` 和 x86 `version.dll`。自有 agent JAR 的完整性校验、原子释放和缓存内容哈希继续保留。PCL2 的 EXE / MVID / IL 校验也继续保留。
 
+### 独立 agent
+
+Release 同时提供 `HKRegion.HMCL.Agent.jar`，与 DLL 内嵌的 agent 字节一致。使用 Java 17+，可直接向运行 HMCL 的 JVM 添加参数，无需原生启动壳或 DLL：
+
+```powershell
+java "-javaagent:C:\tools\HKRegion.HMCL.Agent.jar" -jar "C:\launchers\HMCL.jar"
+```
+
+`-javaagent` 必须位于 HMCL 的 `-jar` 之前。agent 默认将日志写在自身 JAR 所在目录，也可使用 `-javaagent:<agent路径>=<日志路径>` 指定位置。该模式执行相同的字节码分析和转换，仅作用于 HMCL 的目标 Java 类。
+
+### 验证日志
+
 `HKRegion-hmcl-agent.log` 包含：
 
 ```text

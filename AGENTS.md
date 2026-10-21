@@ -4,7 +4,8 @@
 
 ## 必须维持的交付形式
 
-- Release 只上传 `winmm.dll`（PE Machine `0x8664`，x64）与 `version.dll`（`0x014C`，x86）。两者可以同时放到启动器 EXE 同目录。
+- Release 上传 `winmm.dll`（PE Machine `0x8664`，x64）、`version.dll`（`0x014C`，x86）和 `HKRegion.HMCL.Agent.jar`（Java 17+，与 JVM 位数无关）。普通用户仍只需将两个 DLL 一起放到启动器 EXE 同目录；独立 JAR 供高级用户通过 `-javaagent` 使用。
+- 独立 JAR 必须与两个 DLL 内嵌的 agent 字节一致，并包含 `META-INF/LICENSE`。打包及 CI 下载校验需同时覆盖三份产物的大小、SHA-256、DLL 架构和 agent 清单/类；不能把 JAR 交给 PE 校验分支。
 - PCL2 / PCL2-CE 使用 x64 WinMM 入口；HMCL 的 x86 壳使用 version 入口，再给实际 JVM 加载与架构无关的 Java agent。不能以 Windows 位数或 JVM 位数替代壳位数选择 DLL。
 - 同一架构的 version/winmm/winhttp 副本字节相同，仅供内部转发测试；不同架构不相同。不要把 x64 version.dll 或 x86 winmm.dll 混入正式发布。
 - 不修改磁盘上的启动器 EXE/JAR、系统地区、时区、注册表或全局 Java 环境变量。运行时载荷使用内容哈希文件名，核对完整字节后原子发布；损坏缓存不执行。
@@ -22,8 +23,8 @@
 | `src/hmcl_agent.cpp`、`java/HmclRegionAgent.java` | 自有 JAR 释放、RegionUtils 的 Instrumentation 转换与结果验证 |
 | `java/HmclClassAnalyzer.java` | 解析实际字节码、识别地区判定根、追踪缓存和访问方法、生成替换计划 |
 | `scripts/build-release.ps1` | 重新生成两种载荷、编译双架构、测试并打包 |
-| `scripts/package-release.py` | 校验文件名、真实 PE 位数、DLL 标志与嵌入许可 |
-| `.github/workflows/release.yml` | tag 构建、测试、上传双 DLL 并发布 Release |
+| `scripts/package-release.py` | 校验 DLL 架构/许可、独立 JAR 清单/许可及与内嵌载荷的一致性 |
+| `.github/workflows/release.yml` | tag 构建、测试、上传双 DLL 与独立 JAR 并发布 Release |
 
 详细指纹、上游提交和历史发现见 `docs/MAINTENANCE.md`；HMCL 识别条件见 `docs/HMCL_ANALYSIS.md`。不要未经分析就把“最新版”视为相同实现。
 
@@ -71,6 +72,6 @@ ctest --test-dir build/msvc-Win32 -C Release --output-on-failure
 
 ## 发布维护
 
-tag push 才发布；手动 workflow_dispatch 只构建 artifact。两个架构必须在同一流程中使用同一批载荷，打包后检查 PE 位数，保留源码/MinHook 许可。只在所有构建与测试通过后上传并公开 Release；已有公开 Release 不覆盖，新代码用新 tag。仓库写入权限仅授予发布 job，不需要 PAT。
+tag push 才发布；手动 workflow_dispatch 只构建 artifact。两个架构必须在同一流程中使用同一批载荷，独立 JAR 直接取自该批 agent 输出；打包后检查 PE 位数、JAR 完整性及载荷一致性，保留源码/MinHook 许可。artifact、下载校验和 Release 上传清单必须同时包含三份产物。只在所有构建与测试通过后上传并公开 Release；已有公开 Release 不覆盖，新代码用新 tag。仓库写入权限仅授予发布 job，不需要 PAT。
 
-不得提交目标启动器、反编译缓存、个人绝对路径、运行时日志/数据、账号信息或构建输出。源码根目录和发布的两种文件名是维护边界。
+不得提交目标启动器、反编译缓存、个人绝对路径、运行时日志/数据、账号信息或构建输出。源码根目录和发布的三种文件名是维护边界。

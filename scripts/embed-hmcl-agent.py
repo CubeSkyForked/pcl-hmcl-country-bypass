@@ -18,7 +18,8 @@ manifest = ('Manifest-Version: 1.0\r\n'
             'Can-Retransform-Classes: true\r\n\r\n')
 buffer = io.BytesIO()
 with zipfile.ZipFile(buffer, 'w', compression=zipfile.ZIP_DEFLATED) as archive:
-    files = [('META-INF/MANIFEST.MF', manifest.encode('ascii'))]
+    files = [('META-INF/MANIFEST.MF', manifest.encode('ascii')),
+             ('META-INF/LICENSE', (Path(__file__).resolve().parents[1] / 'LICENSE').read_bytes())]
     files += [(p.relative_to(args.classes).as_posix(), p.read_bytes())
               for p in sorted(args.classes.rglob('*.class'))]
     for name, content in files:

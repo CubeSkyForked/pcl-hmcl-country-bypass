@@ -10,6 +10,7 @@
 - **进程内地区覆盖**：覆盖地区、用户 Locale 和首选 UI 语言等信号，返回香港地区相关数据；系统时区保持原值。
 - **PCL2 下载回调恢复**：对已匹配的原版 PCL2，在已有 CLR 中恢复原下载委托，继续使用启动器自身的版本列表加载器。
 - **HMCL 启动时自动分析**：自动向实际 JVM 加载 agent，按目标类的字节码、调用和缓存关系识别地区判定方法，适应方法与字段改名。
+- **独立 Java agent**：Release 同时提供 `HKRegion.HMCL.Agent.jar`，高级用户可自行通过 JVM 参数加载。
 - **运行时生效**：处理发生在启动器进程内，原始 EXE / JAR、系统地区、注册表和全局 Java 环境变量均不改写。
 
 ## 快速开始
@@ -30,6 +31,22 @@
 启动器目录需要可写，以便首次启动时释放载荷到 `HKRegionCache`。更新补丁时，先退出启动器再替换两个 DLL；卸载时，退出启动器后删除这两个文件即可，生成的缓存和日志也可一并清理。
 
 自动加载面向 Windows EXE 启动入口；直接使用 `java -jar` 运行 HMCL 不会经过 DLL 代理。
+
+### 高级用法：独立 Java agent
+
+从同一 Release 下载 `HKRegion.HMCL.Agent.jar`，使用 Java 17+ 启动 HMCL，将 `-javaagent` 参数放在 HMCL 的 `-jar` 之前：
+
+```powershell
+java "-javaagent:C:\tools\HKRegion.HMCL.Agent.jar" -jar "C:\launchers\HMCL.jar"
+```
+
+将示例中的路径替换为实际文件路径。此模式无需 DLL，agent 与 JVM 位数无关；它只处理 HMCL 的 Java 地区判定，不提供 PCL2 / PCL2-CE 的原生 Hook。
+
+默认日志写在 agent JAR 所在目录的 `HKRegion-hmcl-agent.log`。也可以在 agent 参数后指定日志文件：
+
+```powershell
+java "-javaagent:C:\tools\HKRegion.HMCL.Agent.jar=C:\logs\hmcl-agent.log" -jar "C:\launchers\HMCL.jar"
+```
 
 ## 兼容范围
 
@@ -56,7 +73,7 @@ HMCL 的地区检查运行在独立 JVM 中，由内嵌 Java agent 在目标类�
 
 ## 日志与排查
 
-日志位于启动器 EXE 同目录：
+使用 DLL 自动加载时，日志位于启动器 EXE 同目录：
 
 | 文件 | 用途 |
 | --- | --- |
@@ -97,8 +114,9 @@ VERIFIED: machine=false; network=false; ...
 
 ```text
 dist/
-├── winmm.dll       # x64
-└── version.dll     # x86
+├── winmm.dll                 # x64
+├── version.dll               # x86
+└── HKRegion.HMCL.Agent.jar    # Java 17+，可选的独立 agent
 ```
 
 `build/release-manifest.json` 记录文件架构、大小与 SHA-256；`build/release-notes.md` 提供发布说明。修改 C# 或 Java 源码后，重新运行完整构建脚本即可同步载荷；生成的头文件和构建输出不纳入源码。
@@ -119,7 +137,7 @@ HMCL 自动分析还通过了原始 EXE、改名并修改 PE 时间戳的 EXE �
 
 ## 自动发布
 
-[GitHub Actions 工作流](.github/workflows/release.yml) 在推送 tag 时构建并测试两个架构，随后创建 Release，上传且仅上传 `winmm.dll` 和 `version.dll`。
+[GitHub Actions 工作流](.github/workflows/release.yml) 在推送 tag 时构建并测试两个架构，随后创建 Release，上传 `winmm.dll`、`version.dll` 和 `HKRegion.HMCL.Agent.jar`。独立 JAR 与两个 DLL 内嵌的 agent 来自同一次构建，打包时校验字节一致。
 
 ```powershell
 git tag v1.7.0
@@ -146,4 +164,4 @@ docs/                   兼容性分析和维护文档
 
 ## 许可证
 
-项目代码采用 [MIT License](LICENSE)。内嵌的 MinHook 遵循其 [BSD 2-Clause 及 HDE 许可声明](third_party/minhook/LICENSE.txt)，两份 Release DLL 均包含相应许可资源。完整第三方说明见 [THIRD_PARTY.md](THIRD_PARTY.md)。
+项目代码采用 [MIT License](LICENSE)，独立 agent JAR 在 `META-INF/LICENSE` 中包含项目许可证。内嵌的 MinHook 遵循其 [BSD 2-Clause 及 HDE 许可声明](third_party/minhook/LICENSE.txt)，两份 Release DLL 均包含相应许可资源。完整第三方说明见 [THIRD_PARTY.md](THIRD_PARTY.md)。

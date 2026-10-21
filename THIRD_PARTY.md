@@ -10,6 +10,8 @@
 
 The hooks, proxy, C# helper, Java agent and build/test scripts are original project
 code under `LICENSE`. The project license is embedded as RCDATA resource 101.
+The standalone `HKRegion.HMCL.Agent.jar` includes this license as
+`META-INF/LICENSE`; it contains no MinHook code.
 CI uses MSVC with the static runtime; Microsoft compilers, SDKs, .NET and Java
 runtimes are not bundled. No launcher executable, decompiled launcher class,
 Minecraft asset, authentication data or downloaded application cache is included.

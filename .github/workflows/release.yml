@@ -1,0 +1,94 @@
+name: Build and release launcher DLLs
+
+on:
+  push:
+    tags:
+      - '**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: windows-2022
+    timeout-minutes: 25
+    defaults:
+      run:
+        shell: pwsh
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.13'
+          architecture: x64
+      - uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: '21'
+      - name: Rebuild payloads, compile both architectures, test and package
+        run: ./scripts/build-release.ps1 -JavaHome $env:JAVA_HOME
+      - name: Upload the tested release bundle
+        uses: actions/upload-artifact@v7
+        with:
+          name: launcher-dlls
+          if-no-files-found: error
+          retention-days: 14
+          path: |
+            dist/winmm.dll
+            dist/version.dll
+            build/release-manifest.json
+            build/release-notes.md
+
+  release:
+    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v8
+        with:
+          name: launcher-dlls
+          path: .
+      - name: Verify the downloaded bundle
+        run: |
+          python3 - <<'PY'
+          import hashlib, json, struct
+          from pathlib import Path
+          manifest = json.loads(Path('build/release-manifest.json').read_text())
+          expected = {'winmm.dll': 0x8664, 'version.dll': 0x14c}
+          assert {entry['name'] for entry in manifest['assets']} == set(expected)
+          assert {p.name for p in Path('dist').iterdir()} == set(expected)
+          for entry in manifest['assets']:
+              data = (Path('dist') / entry['name']).read_bytes()
+              assert hashlib.sha256(data).hexdigest() == entry['sha256']
+              pe = struct.unpack_from('<I', data, 0x3c)[0]
+              assert data[pe:pe + 4] == b'PE\0\0'
+              assert struct.unpack_from('<H', data, pe + 4)[0] == expected[entry['name']]
+          PY
+      - name: Create the release and upload exactly two DLLs
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: |
+          set -euo pipefail
+          draft=$(gh release view --json isDraft --jq '.isDraft' -- "$RELEASE_TAG" 2>/dev/null || true)
+          if [[ "$draft" == 'false' ]]; then
+            echo 'This release is already published. Use a new tag for a new build.' >&2
+            exit 1
+          fi
+          if [[ "$draft" != 'true' ]]; then
+            gh release create --draft --verify-tag \
+              --title "$RELEASE_TAG" --notes-file build/release-notes.md -- "$RELEASE_TAG"
+          fi
+          gh release upload --clobber -- "$RELEASE_TAG" dist/winmm.dll dist/version.dll
+          gh release edit --draft=false --notes-file build/release-notes.md -- "$RELEASE_TAG"

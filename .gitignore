@@ -1,0 +1,10 @@
+/build/
+/dist/
+/src/managed_payload.h
+/src/hmcl_agent_payload.h
+/.vs/
+__pycache__/
+*.user
+*.suo
+HKRegionCache/
+HKRegion-*.log

@@ -1,0 +1,1180 @@
+{
+  "source": "Windows 11 build 26200; exported API names and ordinals only",
+  "libraries": {
+    "version": {
+      "exports": [
+        {
+          "ordinal": 1,
+          "name": "GetFileVersionInfoA"
+        },
+        {
+          "ordinal": 2,
+          "name": "GetFileVersionInfoByHandle"
+        },
+        {
+          "ordinal": 3,
+          "name": "GetFileVersionInfoExA"
+        },
+        {
+          "ordinal": 4,
+          "name": "GetFileVersionInfoExW"
+        },
+        {
+          "ordinal": 5,
+          "name": "GetFileVersionInfoSizeA"
+        },
+        {
+          "ordinal": 6,
+          "name": "GetFileVersionInfoSizeExA"
+        },
+        {
+          "ordinal": 7,
+          "name": "GetFileVersionInfoSizeExW"
+        },
+        {
+          "ordinal": 8,
+          "name": "GetFileVersionInfoSizeW"
+        },
+        {
+          "ordinal": 9,
+          "name": "GetFileVersionInfoW"
+        },
+        {
+          "ordinal": 10,
+          "name": "VerFindFileA"
+        },
+        {
+          "ordinal": 11,
+          "name": "VerFindFileW"
+        },
+        {
+          "ordinal": 12,
+          "name": "VerInstallFileA"
+        },
+        {
+          "ordinal": 13,
+          "name": "VerInstallFileW"
+        },
+        {
+          "ordinal": 14,
+          "name": "VerLanguageNameA"
+        },
+        {
+          "ordinal": 15,
+          "name": "VerLanguageNameW"
+        },
+        {
+          "ordinal": 16,
+          "name": "VerQueryValueA"
+        },
+        {
+          "ordinal": 17,
+          "name": "VerQueryValueW"
+        }
+      ],
+      "source_sha256": "cea99f212af557a9613150c5509631403ed0f05f5d9a06ac42039bd59b40e39a"
+    },
+    "winhttp": {
+      "exports": [
+        {
+          "ordinal": 1,
+          "name": "DllCanUnloadNow"
+        },
+        {
+          "ordinal": 2,
+          "name": "DllGetClassObject"
+        },
+        {
+          "ordinal": 3,
+          "name": "Private1"
+        },
+        {
+          "ordinal": 4,
+          "name": "SvchostPushServiceGlobals"
+        },
+        {
+          "ordinal": 5,
+          "name": "WinHttpAddRequestHeaders"
+        },
+        {
+          "ordinal": 6,
+          "name": "WinHttpAddRequestHeadersEx"
+        },
+        {
+          "ordinal": 7,
+          "name": "WinHttpAutoProxySvcMain"
+        },
+        {
+          "ordinal": 8,
+          "name": "WinHttpCheckPlatform"
+        },
+        {
+          "ordinal": 9,
+          "name": "WinHttpCloseHandle"
+        },
+        {
+          "ordinal": 10,
+          "name": "WinHttpConnect"
+        },
+        {
+          "ordinal": 11,
+          "name": "WinHttpConnectionDeletePolicyEntries"
+        },
+        {
+          "ordinal": 12,
+          "name": "WinHttpConnectionDeletePolicyEntriesByAppSid"
+        },
+        {
+          "ordinal": 13,
+          "name": "WinHttpConnectionDeleteProxyInfo"
+        },
+        {
+          "ordinal": 14,
+          "name": "WinHttpConnectionFreeNameList"
+        },
+        {
+          "ordinal": 15,
+          "name": "WinHttpConnectionFreeProxyInfo"
+        },
+        {
+          "ordinal": 16,
+          "name": "WinHttpConnectionFreeProxyList"
+        },
+        {
+          "ordinal": 17,
+          "name": "WinHttpConnectionGetNameList"
+        },
+        {
+          "ordinal": 18,
+          "name": "WinHttpConnectionGetProxyInfo"
+        },
+        {
+          "ordinal": 19,
+          "name": "WinHttpConnectionGetProxyList"
+        },
+        {
+          "ordinal": 20,
+          "name": "WinHttpConnectionOnlyConvert"
+        },
+        {
+          "ordinal": 21,
+          "name": "WinHttpConnectionOnlyReceive"
+        },
+        {
+          "ordinal": 22,
+          "name": "WinHttpConnectionOnlySend"
+        },
+        {
+          "ordinal": 23,
+          "name": "WinHttpConnectionSetPolicyEntries"
+        },
+        {
+          "ordinal": 24,
+          "name": "WinHttpConnectionSetProxyInfo"
+        },
+        {
+          "ordinal": 25,
+          "name": "WinHttpConnectionUpdateIfIndexTable"
+        },
+        {
+          "ordinal": 26,
+          "name": "WinHttpCrackUrl"
+        },
+        {
+          "ordinal": 27,
+          "name": "WinHttpCreateProxyList"
+        },
+        {
+          "ordinal": 28,
+          "name": "WinHttpCreateProxyManager"
+        },
+        {
+          "ordinal": 29,
+          "name": "WinHttpCreateProxyResolver"
+        },
+        {
+          "ordinal": 30,
+          "name": "WinHttpCreateProxyResult"
+        },
+        {
+          "ordinal": 31,
+          "name": "WinHttpCreateUiCompatibleProxyString"
+        },
+        {
+          "ordinal": 32,
+          "name": "WinHttpCreateUrl"
+        },
+        {
+          "ordinal": 33,
+          "name": "WinHttpDetectAutoProxyConfigUrl"
+        },
+        {
+          "ordinal": 34,
+          "name": "WinHttpFreeProxyResult"
+        },
+        {
+          "ordinal": 35,
+          "name": "WinHttpFreeProxyResultEx"
+        },
+        {
+          "ordinal": 36,
+          "name": "WinHttpFreeProxySettings"
+        },
+        {
+          "ordinal": 37,
+          "name": "WinHttpFreeProxySettingsEx"
+        },
+        {
+          "ordinal": 38,
+          "name": "WinHttpFreeQueryConnectionGroupResult"
+        },
+        {
+          "ordinal": 39,
+          "name": "WinHttpGetDefaultProxyConfiguration"
+        },
+        {
+          "ordinal": 40,
+          "name": "WinHttpGetIEProxyConfigForCurrentUser"
+        },
+        {
+          "ordinal": 41,
+          "name": "WinHttpGetProxyForUrl"
+        },
+        {
+          "ordinal": 42,
+          "name": "WinHttpGetProxyForUrlEx"
+        },
+        {
+          "ordinal": 43,
+          "name": "WinHttpGetProxyForUrlEx2"
+        },
+        {
+          "ordinal": 44,
+          "name": "WinHttpGetProxyForUrlHvsi"
+        },
+        {
+          "ordinal": 45,
+          "name": "WinHttpGetProxyResult"
+        },
+        {
+          "ordinal": 46,
+          "name": "WinHttpGetProxyResultEx"
+        },
+        {
+          "ordinal": 47,
+          "name": "WinHttpGetProxySettingsEx"
+        },
+        {
+          "ordinal": 48,
+          "name": "WinHttpGetProxySettingsResultEx"
+        },
+        {
+          "ordinal": 49,
+          "name": "WinHttpGetProxySettingsVersion"
+        },
+        {
+          "ordinal": 50,
+          "name": "WinHttpGetTunnelSocket"
+        },
+        {
+          "ordinal": 51,
+          "name": "WinHttpOpen"
+        },
+        {
+          "ordinal": 52,
+          "name": "WinHttpOpenRequest"
+        },
+        {
+          "ordinal": 53,
+          "name": "WinHttpPacJsWorkerMain"
+        },
+        {
+          "ordinal": 54,
+          "name": "WinHttpProbeConnectivity"
+        },
+        {
+          "ordinal": 55,
+          "name": "WinHttpProtocolCompleteUpgrade"
+        },
+        {
+          "ordinal": 56,
+          "name": "WinHttpProtocolReceive"
+        },
+        {
+          "ordinal": 57,
+          "name": "WinHttpProtocolSend"
+        },
+        {
+          "ordinal": 58,
+          "name": "WinHttpQueryAuthSchemes"
+        },
+        {
+          "ordinal": 59,
+          "name": "WinHttpQueryConnectionGroup"
+        },
+        {
+          "ordinal": 60,
+          "name": "WinHttpQueryDataAvailable"
+        },
+        {
+          "ordinal": 61,
+          "name": "WinHttpQueryHeaders"
+        },
+        {
+          "ordinal": 62,
+          "name": "WinHttpQueryHeadersEx"
+        },
+        {
+          "ordinal": 63,
+          "name": "WinHttpQueryOption"
+        },
+        {
+          "ordinal": 64,
+          "name": "WinHttpReadData"
+        },
+        {
+          "ordinal": 65,
+          "name": "WinHttpReadDataEx"
+        },
+        {
+          "ordinal": 66,
+          "name": "WinHttpReadProxySettings"
+        },
+        {
+          "ordinal": 67,
+          "name": "WinHttpReadProxySettingsHvsi"
+        },
+        {
+          "ordinal": 68,
+          "name": "WinHttpReceiveResponse"
+        },
+        {
+          "ordinal": 69,
+          "name": "WinHttpRefreshProxySettings"
+        },
+        {
+          "ordinal": 70,
+          "name": "WinHttpRegisterProxyChangeNotification"
+        },
+        {
+          "ordinal": 71,
+          "name": "WinHttpResetAutoProxy"
+        },
+        {
+          "ordinal": 72,
+          "name": "WinHttpResolverGetProxyForUrl"
+        },
+        {
+          "ordinal": 73,
+          "name": "WinHttpSaveProxyCredentials"
+        },
+        {
+          "ordinal": 74,
+          "name": "WinHttpSendRequest"
+        },
+        {
+          "ordinal": 75,
+          "name": "WinHttpSetCredentials"
+        },
+        {
+          "ordinal": 76,
+          "name": "WinHttpSetDefaultProxyConfiguration"
+        },
+        {
+          "ordinal": 77,
+          "name": "WinHttpSetOption"
+        },
+        {
+          "ordinal": 78,
+          "name": "WinHttpSetProxySettingsPerUser"
+        },
+        {
+          "ordinal": 79,
+          "name": "WinHttpSetSecureLegacyServersAppCompat"
+        },
+        {
+          "ordinal": 80,
+          "name": "WinHttpSetStatusCallback"
+        },
+        {
+          "ordinal": 81,
+          "name": "WinHttpSetTimeouts"
+        },
+        {
+          "ordinal": 82,
+          "name": "WinHttpTimeFromSystemTime"
+        },
+        {
+          "ordinal": 83,
+          "name": "WinHttpTimeToSystemTime"
+        },
+        {
+          "ordinal": 84,
+          "name": "WinHttpUnregisterProxyChangeNotification"
+        },
+        {
+          "ordinal": 85,
+          "name": "WinHttpWebSocketClose"
+        },
+        {
+          "ordinal": 86,
+          "name": "WinHttpWebSocketCompleteUpgrade"
+        },
+        {
+          "ordinal": 87,
+          "name": "WinHttpWebSocketQueryCloseStatus"
+        },
+        {
+          "ordinal": 88,
+          "name": "WinHttpWebSocketReceive"
+        },
+        {
+          "ordinal": 89,
+          "name": "WinHttpWebSocketSend"
+        },
+        {
+          "ordinal": 90,
+          "name": "WinHttpWebSocketShutdown"
+        },
+        {
+          "ordinal": 91,
+          "name": "WinHttpWriteData"
+        },
+        {
+          "ordinal": 92,
+          "name": "WinHttpWriteProxySettings"
+        }
+      ],
+      "source_sha256": "2509edaea64d4ed9e9993b80fa370f431f37117401ef77cf367533a31b82c180"
+    },
+    "winmm": {
+      "exports": [
+        {
+          "ordinal": 2,
+          "name": ""
+        },
+        {
+          "ordinal": 3,
+          "name": "mciExecute"
+        },
+        {
+          "ordinal": 4,
+          "name": "CloseDriver"
+        },
+        {
+          "ordinal": 5,
+          "name": "DefDriverProc"
+        },
+        {
+          "ordinal": 6,
+          "name": "DriverCallback"
+        },
+        {
+          "ordinal": 7,
+          "name": "DrvGetModuleHandle"
+        },
+        {
+          "ordinal": 8,
+          "name": "GetDriverModuleHandle"
+        },
+        {
+          "ordinal": 9,
+          "name": "OpenDriver"
+        },
+        {
+          "ordinal": 10,
+          "name": "PlaySound"
+        },
+        {
+          "ordinal": 11,
+          "name": "PlaySoundA"
+        },
+        {
+          "ordinal": 12,
+          "name": "PlaySoundW"
+        },
+        {
+          "ordinal": 13,
+          "name": "SendDriverMessage"
+        },
+        {
+          "ordinal": 14,
+          "name": "WOWAppExit"
+        },
+        {
+          "ordinal": 15,
+          "name": "auxGetDevCapsA"
+        },
+        {
+          "ordinal": 16,
+          "name": "auxGetDevCapsW"
+        },
+        {
+          "ordinal": 17,
+          "name": "auxGetNumDevs"
+        },
+        {
+          "ordinal": 18,
+          "name": "auxGetVolume"
+        },
+        {
+          "ordinal": 19,
+          "name": "auxOutMessage"
+        },
+        {
+          "ordinal": 20,
+          "name": "auxSetVolume"
+        },
+        {
+          "ordinal": 21,
+          "name": "joyConfigChanged"
+        },
+        {
+          "ordinal": 22,
+          "name": "joyGetDevCapsA"
+        },
+        {
+          "ordinal": 23,
+          "name": "joyGetDevCapsW"
+        },
+        {
+          "ordinal": 24,
+          "name": "joyGetNumDevs"
+        },
+        {
+          "ordinal": 25,
+          "name": "joyGetPos"
+        },
+        {
+          "ordinal": 26,
+          "name": "joyGetPosEx"
+        },
+        {
+          "ordinal": 27,
+          "name": "joyGetThreshold"
+        },
+        {
+          "ordinal": 28,
+          "name": "joyReleaseCapture"
+        },
+        {
+          "ordinal": 29,
+          "name": "joySetCapture"
+        },
+        {
+          "ordinal": 30,
+          "name": "joySetThreshold"
+        },
+        {
+          "ordinal": 31,
+          "name": "mciDriverNotify"
+        },
+        {
+          "ordinal": 32,
+          "name": "mciDriverYield"
+        },
+        {
+          "ordinal": 33,
+          "name": "mciFreeCommandResource"
+        },
+        {
+          "ordinal": 34,
+          "name": "mciGetCreatorTask"
+        },
+        {
+          "ordinal": 35,
+          "name": "mciGetDeviceIDA"
+        },
+        {
+          "ordinal": 36,
+          "name": "mciGetDeviceIDFromElementIDA"
+        },
+        {
+          "ordinal": 37,
+          "name": "mciGetDeviceIDFromElementIDW"
+        },
+        {
+          "ordinal": 38,
+          "name": "mciGetDeviceIDW"
+        },
+        {
+          "ordinal": 39,
+          "name": "mciGetDriverData"
+        },
+        {
+          "ordinal": 40,
+          "name": "mciGetErrorStringA"
+        },
+        {
+          "ordinal": 41,
+          "name": "mciGetErrorStringW"
+        },
+        {
+          "ordinal": 42,
+          "name": "mciGetYieldProc"
+        },
+        {
+          "ordinal": 43,
+          "name": "mciLoadCommandResource"
+        },
+        {
+          "ordinal": 44,
+          "name": "mciSendCommandA"
+        },
+        {
+          "ordinal": 45,
+          "name": "mciSendCommandW"
+        },
+        {
+          "ordinal": 46,
+          "name": "mciSendStringA"
+        },
+        {
+          "ordinal": 47,
+          "name": "mciSendStringW"
+        },
+        {
+          "ordinal": 48,
+          "name": "mciSetDriverData"
+        },
+        {
+          "ordinal": 49,
+          "name": "mciSetYieldProc"
+        },
+        {
+          "ordinal": 50,
+          "name": "midiConnect"
+        },
+        {
+          "ordinal": 51,
+          "name": "midiDisconnect"
+        },
+        {
+          "ordinal": 52,
+          "name": "midiInAddBuffer"
+        },
+        {
+          "ordinal": 53,
+          "name": "midiInClose"
+        },
+        {
+          "ordinal": 54,
+          "name": "midiInGetDevCapsA"
+        },
+        {
+          "ordinal": 55,
+          "name": "midiInGetDevCapsW"
+        },
+        {
+          "ordinal": 56,
+          "name": "midiInGetErrorTextA"
+        },
+        {
+          "ordinal": 57,
+          "name": "midiInGetErrorTextW"
+        },
+        {
+          "ordinal": 58,
+          "name": "midiInGetID"
+        },
+        {
+          "ordinal": 59,
+          "name": "midiInGetNumDevs"
+        },
+        {
+          "ordinal": 60,
+          "name": "midiInMessage"
+        },
+        {
+          "ordinal": 61,
+          "name": "midiInOpen"
+        },
+        {
+          "ordinal": 62,
+          "name": "midiInPrepareHeader"
+        },
+        {
+          "ordinal": 63,
+          "name": "midiInReset"
+        },
+        {
+          "ordinal": 64,
+          "name": "midiInStart"
+        },
+        {
+          "ordinal": 65,
+          "name": "midiInStop"
+        },
+        {
+          "ordinal": 66,
+          "name": "midiInUnprepareHeader"
+        },
+        {
+          "ordinal": 67,
+          "name": "midiOutCacheDrumPatches"
+        },
+        {
+          "ordinal": 68,
+          "name": "midiOutCachePatches"
+        },
+        {
+          "ordinal": 69,
+          "name": "midiOutClose"
+        },
+        {
+          "ordinal": 70,
+          "name": "midiOutGetDevCapsA"
+        },
+        {
+          "ordinal": 71,
+          "name": "midiOutGetDevCapsW"
+        },
+        {
+          "ordinal": 72,
+          "name": "midiOutGetErrorTextA"
+        },
+        {
+          "ordinal": 73,
+          "name": "midiOutGetErrorTextW"
+        },
+        {
+          "ordinal": 74,
+          "name": "midiOutGetID"
+        },
+        {
+          "ordinal": 75,
+          "name": "midiOutGetNumDevs"
+        },
+        {
+          "ordinal": 76,
+          "name": "midiOutGetVolume"
+        },
+        {
+          "ordinal": 77,
+          "name": "midiOutLongMsg"
+        },
+        {
+          "ordinal": 78,
+          "name": "midiOutMessage"
+        },
+        {
+          "ordinal": 79,
+          "name": "midiOutOpen"
+        },
+        {
+          "ordinal": 80,
+          "name": "midiOutPrepareHeader"
+        },
+        {
+          "ordinal": 81,
+          "name": "midiOutReset"
+        },
+        {
+          "ordinal": 82,
+          "name": "midiOutSetVolume"
+        },
+        {
+          "ordinal": 83,
+          "name": "midiOutShortMsg"
+        },
+        {
+          "ordinal": 84,
+          "name": "midiOutUnprepareHeader"
+        },
+        {
+          "ordinal": 85,
+          "name": "midiStreamClose"
+        },
+        {
+          "ordinal": 86,
+          "name": "midiStreamOpen"
+        },
+        {
+          "ordinal": 87,
+          "name": "midiStreamOut"
+        },
+        {
+          "ordinal": 88,
+          "name": "midiStreamPause"
+        },
+        {
+          "ordinal": 89,
+          "name": "midiStreamPosition"
+        },
+        {
+          "ordinal": 90,
+          "name": "midiStreamProperty"
+        },
+        {
+          "ordinal": 91,
+          "name": "midiStreamRestart"
+        },
+        {
+          "ordinal": 92,
+          "name": "midiStreamStop"
+        },
+        {
+          "ordinal": 93,
+          "name": "mixerClose"
+        },
+        {
+          "ordinal": 94,
+          "name": "mixerGetControlDetailsA"
+        },
+        {
+          "ordinal": 95,
+          "name": "mixerGetControlDetailsW"
+        },
+        {
+          "ordinal": 96,
+          "name": "mixerGetDevCapsA"
+        },
+        {
+          "ordinal": 97,
+          "name": "mixerGetDevCapsW"
+        },
+        {
+          "ordinal": 98,
+          "name": "mixerGetID"
+        },
+        {
+          "ordinal": 99,
+          "name": "mixerGetLineControlsA"
+        },
+        {
+          "ordinal": 100,
+          "name": "mixerGetLineControlsW"
+        },
+        {
+          "ordinal": 101,
+          "name": "mixerGetLineInfoA"
+        },
+        {
+          "ordinal": 102,
+          "name": "mixerGetLineInfoW"
+        },
+        {
+          "ordinal": 103,
+          "name": "mixerGetNumDevs"
+        },
+        {
+          "ordinal": 104,
+          "name": "mixerMessage"
+        },
+        {
+          "ordinal": 105,
+          "name": "mixerOpen"
+        },
+        {
+          "ordinal": 106,
+          "name": "mixerSetControlDetails"
+        },
+        {
+          "ordinal": 107,
+          "name": "mmDrvInstall"
+        },
+        {
+          "ordinal": 108,
+          "name": "mmGetCurrentTask"
+        },
+        {
+          "ordinal": 109,
+          "name": "mmTaskBlock"
+        },
+        {
+          "ordinal": 110,
+          "name": "mmTaskCreate"
+        },
+        {
+          "ordinal": 111,
+          "name": "mmTaskSignal"
+        },
+        {
+          "ordinal": 112,
+          "name": "mmTaskYield"
+        },
+        {
+          "ordinal": 113,
+          "name": "mmioAdvance"
+        },
+        {
+          "ordinal": 114,
+          "name": "mmioAscend"
+        },
+        {
+          "ordinal": 115,
+          "name": "mmioClose"
+        },
+        {
+          "ordinal": 116,
+          "name": "mmioCreateChunk"
+        },
+        {
+          "ordinal": 117,
+          "name": "mmioDescend"
+        },
+        {
+          "ordinal": 118,
+          "name": "mmioFlush"
+        },
+        {
+          "ordinal": 119,
+          "name": "mmioGetInfo"
+        },
+        {
+          "ordinal": 120,
+          "name": "mmioInstallIOProcA"
+        },
+        {
+          "ordinal": 121,
+          "name": "mmioInstallIOProcW"
+        },
+        {
+          "ordinal": 122,
+          "name": "mmioOpenA"
+        },
+        {
+          "ordinal": 123,
+          "name": "mmioOpenW"
+        },
+        {
+          "ordinal": 124,
+          "name": "mmioRead"
+        },
+        {
+          "ordinal": 125,
+          "name": "mmioRenameA"
+        },
+        {
+          "ordinal": 126,
+          "name": "mmioRenameW"
+        },
+        {
+          "ordinal": 127,
+          "name": "mmioSeek"
+        },
+        {
+          "ordinal": 128,
+          "name": "mmioSendMessage"
+        },
+        {
+          "ordinal": 129,
+          "name": "mmioSetBuffer"
+        },
+        {
+          "ordinal": 130,
+          "name": "mmioSetInfo"
+        },
+        {
+          "ordinal": 131,
+          "name": "mmioStringToFOURCCA"
+        },
+        {
+          "ordinal": 132,
+          "name": "mmioStringToFOURCCW"
+        },
+        {
+          "ordinal": 133,
+          "name": "mmioWrite"
+        },
+        {
+          "ordinal": 134,
+          "name": "mmsystemGetVersion"
+        },
+        {
+          "ordinal": 135,
+          "name": "sndPlaySoundA"
+        },
+        {
+          "ordinal": 136,
+          "name": "sndPlaySoundW"
+        },
+        {
+          "ordinal": 137,
+          "name": "timeBeginPeriod"
+        },
+        {
+          "ordinal": 138,
+          "name": "timeEndPeriod"
+        },
+        {
+          "ordinal": 139,
+          "name": "timeGetDevCaps"
+        },
+        {
+          "ordinal": 140,
+          "name": "timeGetSystemTime"
+        },
+        {
+          "ordinal": 141,
+          "name": "timeGetTime"
+        },
+        {
+          "ordinal": 142,
+          "name": "timeKillEvent"
+        },
+        {
+          "ordinal": 143,
+          "name": "timeSetEvent"
+        },
+        {
+          "ordinal": 144,
+          "name": "waveInAddBuffer"
+        },
+        {
+          "ordinal": 145,
+          "name": "waveInClose"
+        },
+        {
+          "ordinal": 146,
+          "name": "waveInGetDevCapsA"
+        },
+        {
+          "ordinal": 147,
+          "name": "waveInGetDevCapsW"
+        },
+        {
+          "ordinal": 148,
+          "name": "waveInGetErrorTextA"
+        },
+        {
+          "ordinal": 149,
+          "name": "waveInGetErrorTextW"
+        },
+        {
+          "ordinal": 150,
+          "name": "waveInGetID"
+        },
+        {
+          "ordinal": 151,
+          "name": "waveInGetNumDevs"
+        },
+        {
+          "ordinal": 152,
+          "name": "waveInGetPosition"
+        },
+        {
+          "ordinal": 153,
+          "name": "waveInMessage"
+        },
+        {
+          "ordinal": 154,
+          "name": "waveInOpen"
+        },
+        {
+          "ordinal": 155,
+          "name": "waveInPrepareHeader"
+        },
+        {
+          "ordinal": 156,
+          "name": "waveInReset"
+        },
+        {
+          "ordinal": 157,
+          "name": "waveInStart"
+        },
+        {
+          "ordinal": 158,
+          "name": "waveInStop"
+        },
+        {
+          "ordinal": 159,
+          "name": "waveInUnprepareHeader"
+        },
+        {
+          "ordinal": 160,
+          "name": "waveOutBreakLoop"
+        },
+        {
+          "ordinal": 161,
+          "name": "waveOutClose"
+        },
+        {
+          "ordinal": 162,
+          "name": "waveOutGetDevCapsA"
+        },
+        {
+          "ordinal": 163,
+          "name": "waveOutGetDevCapsW"
+        },
+        {
+          "ordinal": 164,
+          "name": "waveOutGetErrorTextA"
+        },
+        {
+          "ordinal": 165,
+          "name": "waveOutGetErrorTextW"
+        },
+        {
+          "ordinal": 166,
+          "name": "waveOutGetID"
+        },
+        {
+          "ordinal": 167,
+          "name": "waveOutGetNumDevs"
+        },
+        {
+          "ordinal": 168,
+          "name": "waveOutGetPitch"
+        },
+        {
+          "ordinal": 169,
+          "name": "waveOutGetPlaybackRate"
+        },
+        {
+          "ordinal": 170,
+          "name": "waveOutGetPosition"
+        },
+        {
+          "ordinal": 171,
+          "name": "waveOutGetVolume"
+        },
+        {
+          "ordinal": 172,
+          "name": "waveOutMessage"
+        },
+        {
+          "ordinal": 173,
+          "name": "waveOutOpen"
+        },
+        {
+          "ordinal": 174,
+          "name": "waveOutPause"
+        },
+        {
+          "ordinal": 175,
+          "name": "waveOutPrepareHeader"
+        },
+        {
+          "ordinal": 176,
+          "name": "waveOutReset"
+        },
+        {
+          "ordinal": 177,
+          "name": "waveOutRestart"
+        },
+        {
+          "ordinal": 178,
+          "name": "waveOutSetPitch"
+        },
+        {
+          "ordinal": 179,
+          "name": "waveOutSetPlaybackRate"
+        },
+        {
+          "ordinal": 180,
+          "name": "waveOutSetVolume"
+        },
+        {
+          "ordinal": 181,
+          "name": "waveOutUnprepareHeader"
+        },
+        {
+          "ordinal": 182,
+          "name": "waveOutWrite"
+        }
+      ],
+      "source_sha256": "b9035da2ee058fe565ecb3c0064f46f2d09bde01f29e423ffe6b33e15c773f04"
+    }
+  }
+}

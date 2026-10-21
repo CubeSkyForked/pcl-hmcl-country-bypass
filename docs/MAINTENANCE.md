@@ -100,3 +100,11 @@ agent 在 `RegionUtils` 实际加载时分析指令引用，识别机器与网�
 另从上游固定提交 [8827fd0](https://github.com/HMCL-dev/HMCL/commit/8827fd06d8ea8bcd899e54f76004f63a447e2601) 取得 RegionUtils 及两个编译依赖，使用本地 362 的其余依赖编译单独的 class 探针。该类 SHA-256 为 `e0dbbe3f0b4ace56a36ce6594d00fbee396cdd6de072e3c8533a049aebd52ad1`，与 362 原 class 不同；同一 agent 在 `-Xverify:all` 下动态识别并转换成功，两个公开地区判定返回 false。这是目标类兼容性检查，没有构建或启动该提交的完整 HMCL，也未把上游类纳入本仓库。
 
 本轮实际 GUI 回归针对 HMCL；PCL2 / PCL2-CE 的 GUI 证据仍属于上面的历史构建。本轮未在 GitHub 上推送 tag 或执行托管 Release。
+
+## 2026-10-21：独立 agent 发布
+
+Release 与 Actions artifact 新增 `HKRegion.HMCL.Agent.jar`，同时保留 x64 `winmm.dll` 和 x86 `version.dll`。普通部署仍只需两个 DLL；独立 JAR 供高级用户通过 `-javaagent` 加载，要求 Java 17+。JAR 在 `META-INF/LICENSE` 中包含项目 MIT 许可证。
+
+打包脚本校验 agent 清单、类文件版本、许可证及其与两个 DLL 内嵌载荷的完整字节一致性。CI 下载校验覆盖三份文件的大小、SHA-256、DLL 架构及 JAR 内容，再上传三个 Release 附件。使用方法见 [README](../README.md)。
+
+新增发布配置后重新生成载荷并构建，14 组 CTest、6 组 JVM 场景及 actionlint 检查通过；Release 下载校验的 Python 代码也已在本地执行通过。直接使用 `dist/HKRegion.HMCL.Agent.jar` 和 `-javaagent` 启动自有 JVM 样例成功，带空格的自定义日志路径可用。本次未修改地区判定或自动注入逻辑，未重跑真实启动器 GUI，也未触发远端 tag Release。当前构建的文件大小与哈希以 `build/release-manifest.json` 为准。
